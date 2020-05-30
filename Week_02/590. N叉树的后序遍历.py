@@ -10,3 +10,36 @@
 说明: 递归法很简单，你可以使用迭代法完成此题吗?
 
 """
+
+from typing import *
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        """递归"""
+        if not root:return []
+        res = []
+        def digui(root):
+            if root:
+                for i in root.children:
+                    digui(i)
+                res.append(root.val)
+        digui(root)
+        return res
+
+    def postorder1(self, root: 'Node') -> List[int]:
+        """迭代"""
+        if not root:return []
+        res = []
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            for i in node.children:
+                stack.append(i)
+            res.append(node.val)
+        return res[::-1]
