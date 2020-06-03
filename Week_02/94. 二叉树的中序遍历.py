@@ -50,10 +50,14 @@ class Solution:
         res = []
         p = root
         while p or stack:
-            while p: # 一直找左子树，直到没有左子树节点位置
-                stack.append(p) # 左子树节点存下来
+            while p:  # 一直找左子树，直到没有左子树节点位置
+                stack.append(p)  # 左子树节点存下来
                 p = p.left
-            p = stack.pop() # 将最深层的节点从stack弹出
-            res.append(p.val) #
+            p = stack.pop()  # 将最深层的节点从stack弹出
+            res.append(p.val)  #
             p = p.right
         return res
+
+    def inorderTraversal2(self, root: TreeNode) -> List[int]:
+        p = lambda x: p(x.left) + [x.val] + p(x.right) if x else []
+        return p(root)
