@@ -29,7 +29,5 @@ def backtrack(nums(选择列表),track(路径)):
         track.append()
         backtrack(nums,track)
         res.pop()
-
-    
     
 ```
