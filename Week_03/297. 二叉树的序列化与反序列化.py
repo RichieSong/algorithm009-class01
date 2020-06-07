@@ -26,6 +26,12 @@
 1、序列化成字符串
 2、字符串还可以构造二叉树
 
+
+dfs
+
+bfs
+
+都能解决
 """
 
 
@@ -36,6 +42,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Codec:
 
     def serialize(self, root):
@@ -44,6 +51,18 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
+        res = []
+
+        def dfs(root):
+            if root:
+                res.append(str(root.val))
+                dfs(root.left)
+                dfs(root.right)
+            else:
+                res.append("#")
+
+        dfs(root)
+        return ",".join(res)
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -51,3 +70,14 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
+        vals = iter(data.split(","))
+        def dfs():
+            v = next(vals)
+            if v == "#":
+                return None
+            node = TreeNode(v)
+            node.left = dfs()
+            node.right = dfs()
+            return node
+
+        return dfs()
