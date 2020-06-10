@@ -32,3 +32,10 @@ class Solution:
             else:
                 r = mid - 1
         return res
+
+    def mySqrt1(self, x: int) -> int:
+        """牛顿迭代法：记住即可"""
+        r = x
+        while r * r > x:
+            r = (r + x / r) / 2
+        return r
