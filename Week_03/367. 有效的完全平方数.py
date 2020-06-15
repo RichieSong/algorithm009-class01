@@ -32,3 +32,6 @@ class Solution:
             else:
                 l = mid + 1
         return False
+    def isPerfectSquare1(self, num: int) -> bool:
+        """牛顿迭代法"""
+
